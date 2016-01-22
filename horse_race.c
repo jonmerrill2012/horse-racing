@@ -23,7 +23,7 @@ void finish() {
 
 void print_finish() {
         int j;
-        printw("                     |");
+        printw("                        |");
         for (j = 0; j < race_length; j++) {
                 printw("  ");
         }
@@ -131,8 +131,8 @@ void * horse(void * arg) {
         }
 }
 
-char * get_name(void){
-        const char *adj[29] = {
+void get_horse_name(struct horse_t * horse){
+        const char *adj[46] = {
                                   "Lightning",
                                   "Bold",
                                   "Salsa",
@@ -161,9 +161,26 @@ char * get_name(void){
                                   "Bet on",
                                   "Don't Forget",
                                   "Sexy",
-                                  "Lucky"
+                                  "Lucky",
+                                  "Lovely",
+                                  "Smokey",
+                                  "Handsome",
+                                  "Snatchin'",
+                                  "Hungry",
+                                  "Fiesta",
+                                  "Chips 'n",
+                                  "Topdecked",
+                                  "Party with",
+                                  "The lonely",
+                                  "Half",
+                                  "Super",
+                                  "Racin'",
+                                  "Wrastlin'",
+                                  "Kentucky",
+                                  "Roses are",
+                                  "Dinner with"
                               };
-        const char *nouns[29] = {
+        const char *nouns[66] = {
                                     "Lightning",
                                     "Salsa",
                                     "Chance",
@@ -192,19 +209,63 @@ char * get_name(void){
                                     "Franky",
                                     "Bella",
                                     "Tank",
-                                    "Gus"
+                                    "Gus",
+                                    "Nostalgia",
+                                    "Dancer",
+                                    "Blue",
+                                    "Pop",
+                                    "Ma",
+                                    "Bush",
+                                    "Reagan",
+                                    "Zippo",
+                                    "Love",
+                                    "Mario",
+                                    "Red",
+                                    "Dan",
+                                    "Biscuit",
+                                    "Superman",
+                                    "Winner",
+                                    "Insurance",
+                                    "Lightbulb",
+                                    "Morning",
+                                    "Baby",
+                                    "Wizard",
+                                    "Diablo",
+                                    "Blueberry",
+                                    "Apple",
+                                    "Hank",
+                                    "Taco",
+                                    "Honey",
+                                    "Toe-jam",
+                                    "Rock",
+                                    "Licky",
+                                    "Horse",
+                                    "Banjo",
+                                    "Lost Love",
+                                    "Egyptian",
+                                    "Vodka",
+                                    "Rum",
+                                    "Cider",
+                                    "Trouble"
                                 };
 
-        // longest name is: "Sunny with a Lightning" (22 chars) don't judge me
-        char name[23] = "";
+        char name[50] = "";
         if (rand() % 3 > 0){
-                strcat(name, adj[rand() % 29]);
+                strcat(name, adj[rand() % 46]);
                 strcat(name, " ");
         }
 
-        strcat(name, nouns[rand() % 29]);
-        printf("%s\n", name);
-        return name;
+        strcat(name, nouns[rand() % 66]);
+        int length = strlen(name);
+
+        int i;
+        // longest name is: "Sunny with a Lightning" (22 chars) don't judge me
+        char name_with_spaces[23] = "";
+        for (i = 0; i < 22 - length; i++)  {
+                strcat(name_with_spaces, " ");
+        }
+        strcat(name_with_spaces, name);
+        strcpy(horse->name, name_with_spaces);
 }
 
 int main(int argc, char **argv) {
@@ -216,23 +277,17 @@ int main(int argc, char **argv) {
         race_length = 25;
 
         srand((unsigned) time(&t));
-        for(i = 0; i < 5; i++){
-                get_name();
-        }
-        return 0;
-
-
         pthread_mutex_init(&print_mutex, NULL);
 
-        strcpy(horses[0].name, "          Lightning");
+        get_horse_name(&horses[0]);
+        get_horse_name(&horses[1]);
+        get_horse_name(&horses[2]);
+        get_horse_name(&horses[3]);
+        get_horse_name(&horses[4]);
         horses[0].odds = rand() % 6 + 2;
-        strcpy(horses[1].name, "         Bold Salsa");
         horses[1].odds = rand() % 6 + 2;
-        strcpy(horses[2].name, "Sunny With A Chance");
         horses[2].odds = rand() % 6 + 2;
-        strcpy(horses[3].name, " The Only Tennessee");
         horses[3].odds = rand() % 6 + 2;
-        strcpy(horses[4].name, "    Georgia's Pride");
         horses[4].odds = rand() % 6 + 2;
 
 
