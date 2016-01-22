@@ -131,6 +131,82 @@ void * horse(void * arg) {
         }
 }
 
+char * get_name(void){
+        const char *adj[29] = {
+                                  "Lightning",
+                                  "Bold",
+                                  "Salsa",
+                                  "Sunny with a",
+                                  "The Only",
+                                  "Georgia's",
+                                  "Tennessee",
+                                  "Screamin'",
+                                  "Cow",
+                                  "Fast",
+                                  "Hairy",
+                                  "Tubby",
+                                  "Jumpin'",
+                                  "For",
+                                  "Hangin' with",
+                                  "Portland",
+                                  "Humboldt",
+                                  "Cheesy",
+                                  "Bright",
+                                  "Flat",
+                                  "Pancake",
+                                  "Jelly-Filled",
+                                  "Evil",
+                                  "Nice",
+                                  "Slim",
+                                  "Bet on",
+                                  "Don't Forget",
+                                  "Sexy",
+                                  "Lucky"
+                              };
+        const char *nouns[29] = {
+                                    "Lightning",
+                                    "Salsa",
+                                    "Chance",
+                                    "Tennessee",
+                                    "Pride",
+                                    "Georgia",
+                                    "Bryan",
+                                    "Void",
+                                    "Icehowl",
+                                    "Cowboy",
+                                    "Git Commit",
+                                    "Mexican",
+                                    "Butter",
+                                    "Cat Woman",
+                                    "Comcast",
+                                    "Anderson",
+                                    "Mango",
+                                    "Mouse",
+                                    "America",
+                                    "Body Mass",
+                                    "Hippo",
+                                    "Meat",
+                                    "Robot",
+                                    "Gary",
+                                    "Scout",
+                                    "Franky",
+                                    "Bella",
+                                    "Tank",
+                                    "Gus"
+                                };
+
+        // longest name is: "Sunny with a Lightning" (22 chars) don't judge me
+        char name[23] = "";
+        if (rand() % 3 > 0){
+                strcat(name, adj[rand() % 29]);
+                strcat(name, " ");
+        }
+
+        strcat(name, nouns[rand() % 29]);
+        printf("%s\n", name);
+        return name;
+}
+
 int main(int argc, char **argv) {
         int i;
         pthread_t threads[5];
@@ -140,6 +216,11 @@ int main(int argc, char **argv) {
         race_length = 25;
 
         srand((unsigned) time(&t));
+        for(i = 0; i < 5; i++){
+                get_name();
+        }
+        return 0;
+
 
         pthread_mutex_init(&print_mutex, NULL);
 
