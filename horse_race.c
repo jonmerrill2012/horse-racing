@@ -136,7 +136,7 @@ void * horse(void * arg) {
                 horses[idx].pos++;
                 printscr(idx);
                 if (won != -1) {
-                        return;
+                    break;
                 }
         }
 }
