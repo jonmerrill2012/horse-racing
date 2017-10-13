@@ -142,7 +142,7 @@ void * horse(void * arg) {
 }
 
 void get_horse_name(struct horse_t * horse){
-        const char *adj[46] = {
+        const char *adj[47] = {
                                   "Lightning",
                                   "Bold",
                                   "Salsa",
@@ -188,9 +188,10 @@ void get_horse_name(struct horse_t * horse){
                                   "Wrastlin'",
                                   "Kentucky",
                                   "Roses are",
-                                  "Dinner with"
+                                  "Dinner with",
+                                  "Bloodfury"
                               };
-        const char *nouns[66] = {
+        const char *nouns[67] = {
                                     "Lightning",
                                     "Salsa",
                                     "Chance",
@@ -256,16 +257,17 @@ void get_horse_name(struct horse_t * horse){
                                     "Vodka",
                                     "Rum",
                                     "Cider",
-                                    "Trouble"
+                                    "Trouble",
+                                    "Potion"
                                 };
 
         char name[50] = "";
         if (rand() % 3 > 0){
-                strcat(name, adj[rand() % 46]);
+                strcat(name, adj[rand() % 47]);
                 strcat(name, " ");
         }
 
-        strcat(name, nouns[rand() % 66]);
+        strcat(name, nouns[rand() % 67]);
         int length = strlen(name);
 
         int i;
